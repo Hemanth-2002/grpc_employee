@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+option go_package = "examples/com/grpc_employee";
+
+package grpc_employee;
+
+service EmployeeDatabaseCrud {
+    rpc CreateEmployee(NewEmployee) returns (Employee) {} 
+    rpc GetEmployees(EmptyEmployee) returns (Employees){} 
+    rpc UpdateManager(Employee) returns (Employee) {} 
+    rpc DeleteEmployee(Employee) returns (EmptyEmployee){} 
+}
+
+message Employee{
+    uint64 id = 1;
+    string emp_name = 2;
+    uint64 department_id = 3;
+    string manager_name = 4;
+}
+
+message NewEmployee {
+    string emp_name = 1;
+    uint64 department_id = 2;
+    string manager_name = 3;
+}
+
+message EmptyEmployee{
+}
+
+message Employees {
+    repeated Employee employees=1;
+}
