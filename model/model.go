@@ -1,8 +1,6 @@
 package model
 
 import (
-	"fmt"
-
 	"github.com/jinzhu/gorm"
 	_ "github.com/lib/pq"
 )
@@ -35,22 +33,22 @@ func StartDB() {
 	// 		{EmpName: "PST", ManagerName: "Mani"},
 	// 	},
 	// })
-	users := []Department{}
+	// users := []Department{}
 
-	db.Preload("Employee").Find(&users)
-	for _, user := range users {
-		fmt.Printf("\n%v\n", user)
-	}
+	// db.Preload("Employee").Find(&users)
+	// for _, user := range users {
+	// 	fmt.Printf("\n%v\n", user)
+	// }
 
-	output := []Emp_dept{}
-	db.Debug().Model(&users).Select([]string{"emp_name", "manager_name", "dept_name"}).Scan(&output)
-	db.Debug().Model(&Department{}).Joins("inner join employees on employees.department_id = departments.id").
-		Select("employees.emp_name, employees.manager_name, departments.dept_name").Scan(&output)
-	for _, u := range output {
-		fmt.Printf("\n%v\n", u)
-	}
+	// output := []Emp_dept{}
+	// db.Debug().Model(&users).Select([]string{"emp_name", "manager_name", "dept_name"}).Scan(&output)
+	// db.Debug().Model(&Department{}).Joins("inner join employees on employees.department_id = departments.id").
+	// 	Select("employees.emp_name, employees.manager_name, departments.dept_name").Scan(&output)
+	// for _, u := range output {
+	// 	fmt.Printf("\n%v\n", u)
+	// }
 
-	fmt.Println("Done")
+	// fmt.Println("Done")
 }
 
 type Department struct {
