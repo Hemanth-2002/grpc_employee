@@ -49,7 +49,7 @@ func (s *employeeServer) GetEmployees(ctx context.Context, in *pb.EmptyEmployee)
 // function to update manager on server
 func (s *employeeServer) UpdateManager(ctx context.Context, in *pb.Employee) (*pb.Employee, error) {
 	log.Printf("update manager called")
-	s.Db.Model(&model.Employee{}).Where("name=?", in.EmpName).Update("manager", in.ManagerName)
+	s.Db.Model(&model.Employee{}).Where("emp_name=?", in.EmpName).Update("manager_name", in.ManagerName)
 	return &pb.Employee{EmpName: in.GetEmpName(), ManagerName: in.GetManagerName()}, nil
 }
 
